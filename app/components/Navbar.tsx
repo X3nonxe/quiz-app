@@ -3,6 +3,7 @@ import { getAuthSession } from '../lib/next-auth';
 import Link from 'next/link';
 import SigninButton from './SigninButton';
 import UserAccountNav from './UserAccountNav';
+import { ThemeToggle } from './ThemeToggle';
 
 type Props = {};
 
@@ -15,13 +16,17 @@ const Navbar = async (props: Props) => {
         <Link href={'/'} className="flex items-center gap-2">
           <p className="rounded-lg border-2 border-b-4 border-r-4 border-black px-2 py-1 text-xl font-bold transition-all hover:-translate-y-[2px] md:block dark:border-white">Quizqu</p>
         </Link>
-				<div className="flex items-center">
+        {/* dark mode button */}
+        <div className="flex items-center gap-x-3">
+          <ThemeToggle />
+          <div className="flex items-center">
 					{session?.user ? (
 						<UserAccountNav user={session.user} />
 					) : (
 						<SigninButton text='Sign In' />
 					)}
 				</div>
+        </div> 
       </div>
     </div>
   );
